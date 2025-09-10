@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="lt">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Apie — Pro‑implant Gidas</title>
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <link rel="icon" href="../assets/images/favicon.png" />
+  <style>
+    /* Contact form styling (scoped to About page) */
+    .contact-card {
+      margin-top: 14px;
+      background: linear-gradient(180deg, var(--surface), var(--surface-2));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+
+    .contact-card label {
+      display: block;
+      font-weight: 600;
+      margin: 8px 0 6px;
+      color: var(--muted);
+    }
+
+    .contact-card input[type="email"],
+    .contact-card textarea {
+      width: 100%;
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      outline: none;
+    }
+
+    .contact-card input[type="email"]:focus,
+    .contact-card textarea:focus {
+      border-color: rgba(139, 92, 246, .45);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, .16);
+    }
+
+    .contact-card button[type="submit"] {
+      margin-top: 10px;
+      background: linear-gradient(180deg, var(--accent), #6d28d9);
+      color: #fff;
+      border: 1px solid rgba(139, 92, 246, .45);
+      border-radius: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+    }
+
+    .contact-card button[type="submit"]:hover {
+      filter: brightness(1.05);
+    }
+
+    .contact-success {
+      margin-top: 10px;
+      color: var(--accent-2);
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="inner">
+      <div class="brand">Pro‑implant Gidas — Apie</div>
+    </div>
+  </header>
+
+  <div class="container">
+    <aside class="sidebar">
+      <nav class="nav">
+        <h3>Skyriai</h3>
+          <ul>
+            <li><a href="dental/">🦷 Dental</a></li>
+            <li><a href="business/">💼 Microsoft Business Central</a></li>
+            <li><a href="romexis/">🖼️ Romexis</a></li>
+            <li><a href="knowledge/">⌨️ Bendrosios žinios</a></li>
+            <li><a href="protokolai/">📋 Protokolai</a></li>
+            <li><a href="sign/">✍️ Sign</a></li>
+            <li><a href="about.html" aria-current="page">Apie</a></li>
+          </ul>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <div class="breadcrumbs"><a href="./">Pagrindinis</a> / Apie</div>
+      <h1>Apie Pro-Implant Gidą</h1>
+      <p>Šis puslapis skirtas padėti gydytojams, asistentams ir administracijos personalui greitai ir efektyviai rasti
+        atsakymus į kasdien iškylančius klausimus naudojant Pro-Implant sistemas.</p>
+
+      <h2>Tikslas</h2>
+      <p>Mūsų tikslas – padėti komandai dirbti sklandžiai, laikantis saugumo protokolų ir efektyviai naudotis
+        programine įranga.</p>
+
+      <h2>Kontaktai</h2>
+      <p>Jei neradote ieškomos informacijos arba turite pasiūlymų – palikite žinutę.</p>
+
+      <form id="contact-form" class="contact-card" action="https://formspree.io/f/xnndpdnd" method="POST">
+        <label for="email">Jūsų el. paštas:</label>
+        <input id="email" type="email" name="email" required placeholder="vardas@pavyzdys.lt" />
+
+        <label for="message">Jūsų žinutė:</label>
+        <textarea id="message" name="message" rows="5" required
+          placeholder="Trumpai aprašykite klausimą arba pasiūlymą..."></textarea>
+
+        <button type="submit">Siųsti</button>
+        <div id="form-status" class="contact-success" hidden>Jūsų žinutė išsiųsta sėkmingai!</div>
+      </form>
+
+      <script>
+        (function () {
+          const form = document.getElementById('contact-form');
+          const status = document.getElementById('form-status');
+          form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const data = new FormData(form);
+            try {
+              const response = await fetch(form.action, { method: form.method, body: data, headers: { 'Accept': 'application/json' } });
+              if (response.ok) {
+                form.reset();
+                status.hidden = false;
+              }
+            } catch (_) {
+              /* ignore */
+            }
+          });
+        })();
+      </script>
+    </main>
+  </div>
+  <script src="assets/js/lightbox.js"></script>
+</body>
+
+</html>
